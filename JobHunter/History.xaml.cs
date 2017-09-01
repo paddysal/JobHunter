@@ -27,12 +27,6 @@ namespace JobHunter
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            JobHunter.JobApplicationsDataSet jobApplicationsDataSet = ((JobHunter.JobApplicationsDataSet)(this.FindResource("jobApplicationsDataSet")));
-            // Load data into the table ApplicationHistory. You can modify this code as needed.
-            JobHunter.JobApplicationsDataSetTableAdapters.ApplicationHistoryTableAdapter jobApplicationsDataSetApplicationHistoryTableAdapter = new JobHunter.JobApplicationsDataSetTableAdapters.ApplicationHistoryTableAdapter();
-            jobApplicationsDataSetApplicationHistoryTableAdapter.Fill(jobApplicationsDataSet.ApplicationHistory);
-            System.Windows.Data.CollectionViewSource applicationHistoryViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("applicationHistoryViewSource")));
-            applicationHistoryViewSource.View.MoveCurrentToFirst();
         }
     }
 }

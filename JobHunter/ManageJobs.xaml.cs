@@ -63,18 +63,31 @@ namespace JobHunter
             {
                 if (btnAdd.Content.Equals("Add"))
                 {
-                    cmd.CommandText = "INSERT INTO ApplicationHistory(Job Title,Company,via Agency?,Agency Name,Job Url,CV,Cover Letter,Date Applied,Received Reply,Status,Category) Values(" 
-                        + txtJobTitle.Text +  "','" + txtCompany.Text + "'," + chkAgency.IsChecked.Value + "'," + txtAgencyName.Text + ",'" + txtJobUrl.Text + ",'" + "'," + chkCV.IsChecked.Value + "'," 
-                        + "'," + chkCL.IsChecked.Value + "'," + txtDateApplied.Text + ",'" + "'," + chkReply.IsChecked.Value + "'," + txtStatus.Text +  ",'" + txtCategory.Text + "')";
-                    cmd.ExecuteNonQuery();
+                    string test_2 = "INSERT INTO ApplicationHistory(job_title, company, agency, agency_name, job_url, cv_attachment, cover_letter_attachment, date_applied, reply_received, status, category) VALUES('"
+                        + txtJobTitle.Text + "','" + txtCompany.Text + "'," + chkAgency.IsChecked.Value + ",'" + txtAgencyName.Text + "','" + txtJobUrl.Text + "'," + chkCV.IsChecked.Value
+                        + "," + chkCL.IsChecked.Value + ",'" + dateApplied.SelectedDate + "'," + chkReply.IsChecked.Value + ",'" + txtStatus.Text + "','" + txtCategory.Text + "')";
+                    MessageBox.Show(test_2);
+                    cmd.CommandText = "INSERT INTO ApplicationHistory(job_title, company, agency, agency_name, job_url, cv_attachment, cover_letter_attachment, date_applied, reply_received, status, category) VALUES('"
+                        + txtJobTitle.Text + "','" + txtCompany.Text + "'," + chkAgency.IsChecked.Value + ",'" + txtAgencyName.Text + "','" + txtJobUrl.Text + "'," + chkCV.IsChecked.Value
+                        + "," + chkCL.IsChecked.Value + ",'" + dateApplied.SelectedDate + "'," + chkReply.IsChecked.Value + ",'" + txtStatus.Text + "','" + txtCategory.Text + "')";
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        string msg = "Error message is: " + ex;
+                        MessageBox.Show(msg);
+                    }
+
                     BindGrid();
                     MessageBox.Show("Employee Added Successfully...");
                     ClearAll();
                 }
                 else
                 {
-                    cmd.CommandText = "UPDATE ApplicationHistory SET JobTitle='" + txtJobTitle.Text + "',Company='" + txtCompany.Text + "',via Agency?='" + chkAgency.IsChecked.Value + "',Agency Name='" + txtAgencyName.Text + 
-                        "',Job Url='" + txtJobUrl.Text + "',CV='" + chkCV.IsChecked.Value + "',Cover Letter='" + chkCL.IsChecked.Value + "',Date Applied=" + txtDateApplied.Text + ",Received Reply='" + chkReply.IsChecked.Value + ",Status='" + txtStatus.Text + "' where EmpId=" + txtJobID.Text;
+                    cmd.CommandText = "UPDATE ApplicationHistory SET JobTitle='" + txtJobTitle.Text + "',Company='" + txtCompany.Text + "',Agency='" + chkAgency.IsChecked.Value + "',Agency Name='" + txtAgencyName.Text +
+                        "',Job Url='" + txtJobUrl.Text + "',CV='" + chkCV.IsChecked.Value + "',Cover Letter='" + chkCL.IsChecked.Value + "',Date Applied=" + dateApplied.SelectedDate + ",Received Reply='" + chkReply.IsChecked.Value + ",Status='" + txtStatus.Text + "' where EmpId=" + txtJobID.Text;
                     cmd.ExecuteNonQuery();
                     BindGrid();
                     MessageBox.Show("Employee Details Updated Succesffully...");
@@ -100,7 +113,8 @@ namespace JobHunter
             txtCompany.Text = "";
             txtAgencyName.Text = "";
             txtJobUrl.Text = "";
-            txtDateApplied.Text = "";
+            dateApplied.SelectedDate = null;
+
             txtStatus.Text = "";
         }
 
@@ -111,11 +125,11 @@ namespace JobHunter
             {
                 DataRowView row = (DataRowView)gvData.SelectedItems[0];
                 txtJobTitle.Text = row["Job Title"].ToString();
-                chkAgency = row["via Agency?"] as CheckBox;
+                chkAgency = row["Agency"] as CheckBox;
                 txtCompany.Text = row["Company"].ToString();
                 txtAgencyName.Text = row["Agency Name"].ToString();
                 txtJobUrl.Text = row["Job Url"].ToString();
-                txtDateApplied.Text = row["Date Applied"].ToString();
+                //dateApplied.SelectedDate = row["Date Applied"];
                 txtStatus.Text = row["Status"].ToString();
                 txtCategory.Text = row["Category"].ToString();
                 btnAdd.Content = "Update";
@@ -153,6 +167,11 @@ namespace JobHunter
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void btnNow_Click(object sender, RoutedEventArgs e)
+        {
+            dateApplied.DisplayDate = DateTime.Today;
         }
     }
 }

@@ -8,7 +8,7 @@
         Title="Main_Menu" Height="300" Width="300" FontFamily="Abel">
     <Grid>
         <Button x:Name="btnCVMgr" Content="CV Manager" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnCoverLetterMgr" Content="Cover Letter Manager" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnCoverLetterMgr" Content="Cover Letter Manager" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Click="btnCoverLetterMgr_Click"/>
         <Button x:Name="btnAppHistory" Content="Application History" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Click="btnAppHistory_Click"/>
         <Button x:Name="btnAddJob" Content="Add Job" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Width="75" Click="btnAddJob_Click"/>
         <Label x:Name="lblCVsCount" Content="CVs:" HorizontalAlignment="Left" Margin="199,37,0,0" VerticalAlignment="Top"/>

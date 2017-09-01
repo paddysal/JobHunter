@@ -105,5 +105,10 @@ namespace JobHunter
             this.Close();
             manage_jobs.Show();
         }
+
+        private void btnCoverLetterMgr_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

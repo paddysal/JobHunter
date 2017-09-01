@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JobHunter"
         mc:Ignorable="d"
-        Title="ManageJobs" Height="551.224" Width="880.185">
+        Title="ManageJobs" Height="551.224" Width="880.185" MinWidth="950">
     <Grid>
         <DockPanel Name="dockMain" VerticalAlignment="top" HorizontalAlignment="Center" LastChildFill="False">
             <StackPanel>
@@ -48,7 +48,8 @@
                 </WrapPanel>
                 <WrapPanel>
                     <TextBlock Text="Date Applied: "/>
-                    <TextBox Name="txtDateApplied" Width="98" />
+                    <DatePicker x:Name="dateApplied"/>
+                    <Button x:Name="btnNow" Content="Now" Click="btnNow_Click"/>
                 </WrapPanel>
                 <WrapPanel>
                     <TextBlock Text="Received Reply?: "/>
@@ -67,7 +68,7 @@
                 </WrapPanel>
                 <Label Content="No records found." Name="lblCount" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FFE10000"></Label>
                 <WrapPanel Margin="20" HorizontalAlignment="Center">
-                    <DataGrid AutoGenerateColumns="True" Name="gvData" SelectionMode="Single" FontSize="15" Padding="5" Background="Black" />
+                    <DataGrid AutoGenerateColumns="True" Name="gvData" SelectionMode="Single" FontSize="12" Padding="2" Background="Black" MinWidth="900" />
                 </WrapPanel>
             </StackPanel>
         </DockPanel>
