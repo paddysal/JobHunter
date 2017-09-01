@@ -10,53 +10,53 @@
         <DockPanel Name="dockMain" VerticalAlignment="top" HorizontalAlignment="Center" LastChildFill="False">
             <StackPanel>
                 <Label Content="Manage Jobs" HorizontalAlignment="Center" FontSize="12" FontWeight="Bold"></Label>
-                <WrapPanel>
-                    <TextBlock Text="Job ID: "/>
-                    <TextBox Name="txtJobID" Width="139" />
+                <WrapPanel Width="405">
+                    <TextBlock Text="Job ID: " Width="125"/>
+                    <TextBox x:Name="txtJobID" Width="280" />
                 </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Job Title: "/>
-                    <TextBox Name="txtJobTitle" Width="128" />
+                <WrapPanel Width="405">
+                    <TextBlock Text="Job Title: " Width="125"/>
+                    <TextBox Name="txtJobTitle" Width="280" />
                 </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Category: "/>
+                <WrapPanel Width="405">
+                    <TextBlock Text="Category: " Width="125"/>
                     <TextBox Name="txtCategory" Width="124" />
                 </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Company: "/>
+                <WrapPanel Width="405">
+                    <TextBlock Text="Company: " Width="125"/>
                     <TextBox Name="txtCompany" Width="121" />
                 </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Applying via Agency?: "/>
-                    <CheckBox x:Name="chkAgency" />
+                <WrapPanel Width="405">
+                    <TextBlock Text="Applying via Agency?: " Width="125"/>
+                    <CheckBox x:Name="chkAgency" Margin="0,1,0,0" />
                 </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Agency Name: "/>
+                <WrapPanel Width="405">
+                    <TextBlock Text="Agency Name: " Width="125"/>
                     <TextBox Name="txtAgencyName" Width="95" />
                 </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Job Url: "/>
+                <WrapPanel Width="405">
+                    <TextBlock Text="Job Url: " Width="125"/>
                     <TextBox Name="txtJobUrl" Width="131" />
                 </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="CV attached?: "/>
-                    <CheckBox x:Name="chkCV" />
+                <WrapPanel Width="405">
+                    <TextBlock Text="CV attached?: " Width="125"/>
+                    <CheckBox x:Name="chkCV" Panel.ZIndex="1" />
                 </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="CL attached?: "/>
+                <WrapPanel Width="405" Margin="0,1,0,0">
+                    <TextBlock Text="CL attached?: " Width="125"/>
                     <CheckBox x:Name="chkCL" />
                 </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Date Applied: "/>
+                <WrapPanel Width="405">
+                    <TextBlock Text="Date Applied: " Width="125"/>
                     <DatePicker x:Name="dateApplied"/>
                     <Button x:Name="btnNow" Content="Now" Click="btnNow_Click"/>
                 </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Received Reply?: "/>
-                    <CheckBox x:Name="chkReply" />
+                <WrapPanel Width="405">
+                    <TextBlock Text="Received Reply?: " Width="125"/>
+                    <CheckBox x:Name="chkReply" Margin="0,1,0,0" />
                 </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Status : "/>
+                <WrapPanel Width="405">
+                    <TextBlock Text="Status : " Width="125"/>
                     <TextBox Name="txtStatus" Width="131"/>
                 </WrapPanel>
                 <WrapPanel Margin="0" HorizontalAlignment="Center" Height="59">

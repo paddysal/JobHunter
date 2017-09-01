@@ -20,9 +20,14 @@ namespace JobHunter
             //Connect your access database
             con = new OleDbConnection();
             string db_path = AppDomain.CurrentDomain.BaseDirectory;
+            string db_path1 = AppDomain.CurrentDomain.BaseDirectory;
             db_path = db_path.Substring(0, Math.Min(db_path.Length, db_path.Length - 20)) + "Database Files\\JobApplications.accdb";
+            db_path1 = db_path.Substring(0, Math.Min(db_path.Length, db_path.Length - 36)) + "JobHunter\\JobApplications.accdb";
+            MessageBox.Show(db_path1);
             //con.ConnectionString = "Provider=Microsoft.Jet.Oledb.12.0; Data Source=" + AppDomain.CurrentDomain.BaseDirectory + "\\EmpDB.mdb";
-            con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\JobApplications.accdb";
+            //con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\JobApplications.accdb";
+            con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + db_path1;
+            
             BindGrid();
         }
 
@@ -63,16 +68,13 @@ namespace JobHunter
             {
                 if (btnAdd.Content.Equals("Add"))
                 {
-                    string test_2 = "INSERT INTO ApplicationHistory(job_title, company, agency, agency_name, job_url, cv_attachment, cover_letter_attachment, date_applied, reply_received, status, category) VALUES('"
-                        + txtJobTitle.Text + "','" + txtCompany.Text + "'," + chkAgency.IsChecked.Value + ",'" + txtAgencyName.Text + "','" + txtJobUrl.Text + "'," + chkCV.IsChecked.Value
-                        + "," + chkCL.IsChecked.Value + ",'" + dateApplied.SelectedDate + "'," + chkReply.IsChecked.Value + ",'" + txtStatus.Text + "','" + txtCategory.Text + "')";
-                    MessageBox.Show(test_2);
                     cmd.CommandText = "INSERT INTO ApplicationHistory(job_title, company, agency, agency_name, job_url, cv_attachment, cover_letter_attachment, date_applied, reply_received, status, category) VALUES('"
                         + txtJobTitle.Text + "','" + txtCompany.Text + "'," + chkAgency.IsChecked.Value + ",'" + txtAgencyName.Text + "','" + txtJobUrl.Text + "'," + chkCV.IsChecked.Value
                         + "," + chkCL.IsChecked.Value + ",'" + dateApplied.SelectedDate + "'," + chkReply.IsChecked.Value + ",'" + txtStatus.Text + "','" + txtCategory.Text + "')";
                     try
                     {
                         cmd.ExecuteNonQuery();
+                        con.Close();
                     }
                     catch (Exception ex)
                     {
@@ -81,7 +83,7 @@ namespace JobHunter
                     }
 
                     BindGrid();
-                    MessageBox.Show("Employee Added Successfully...");
+                    MessageBox.Show("Job Application Added Successfully...");
                     ClearAll();
                 }
                 else
@@ -171,7 +173,7 @@ namespace JobHunter
 
         private void btnNow_Click(object sender, RoutedEventArgs e)
         {
-            dateApplied.DisplayDate = DateTime.Today;
+            dateApplied.SelectedDate = DateTime.Today;
         }
     }
 }

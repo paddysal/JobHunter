@@ -79,18 +79,10 @@
     <Compile Include="History.xaml.cs">
       <DependentUpon>History.xaml</DependentUpon>
     </Compile>
-    <Compile Include="JobApplicationsDataSet.cs">
-      <DependentUpon>JobApplicationsDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="JobApplicationsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>JobApplicationsDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="JobApplicationsDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>JobApplicationsDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -139,17 +131,6 @@
     <None Include="JobApplicationsDataSet.xss">
       <DependentUpon>JobApplicationsDataSet.xsd</DependentUpon>
     </None>
-    <None Include="JobApplicationsDataSet1.xsc">
-      <DependentUpon>JobApplicationsDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="JobApplicationsDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>JobApplicationsDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="JobApplicationsDataSet1.xss">
-      <DependentUpon>JobApplicationsDataSet1.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -159,11 +140,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="JobApplications.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\cut.png" />
@@ -180,6 +156,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="JobApplications.accdb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
