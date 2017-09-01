@@ -20,7 +20,7 @@
                 </WrapPanel>
                 <WrapPanel Width="405">
                     <TextBlock Text="Category: " Width="125"/>
-                    <TextBox Name="txtCategory" Width="124" />
+                    <TextBox Name="txtCategory" Width="280" />
                 </WrapPanel>
                 <WrapPanel Width="405">
                     <TextBlock Text="Company: " Width="125"/>
@@ -32,11 +32,11 @@
                 </WrapPanel>
                 <WrapPanel Width="405">
                     <TextBlock Text="Agency Name: " Width="125"/>
-                    <TextBox Name="txtAgencyName" Width="95" />
+                    <TextBox Name="txtAgencyName" Width="280" />
                 </WrapPanel>
                 <WrapPanel Width="405">
                     <TextBlock Text="Job Url: " Width="125"/>
-                    <TextBox Name="txtJobUrl" Width="131" />
+                    <TextBox Name="txtJobUrl" Width="280" />
                 </WrapPanel>
                 <WrapPanel Width="405">
                     <TextBlock Text="CV attached?: " Width="125"/>
@@ -48,8 +48,8 @@
                 </WrapPanel>
                 <WrapPanel Width="405">
                     <TextBlock Text="Date Applied: " Width="125"/>
-                    <DatePicker x:Name="dateApplied"/>
-                    <Button x:Name="btnNow" Content="Now" Click="btnNow_Click"/>
+                    <DatePicker x:Name="dateApplied" Width="195"/>
+                    <Button x:Name="btnNow" Content="Now" Click="btnNow_Click" Width="84"/>
                 </WrapPanel>
                 <WrapPanel Width="405">
                     <TextBlock Text="Received Reply?: " Width="125"/>
@@ -57,7 +57,7 @@
                 </WrapPanel>
                 <WrapPanel Width="405">
                     <TextBlock Text="Status : " Width="125"/>
-                    <TextBox Name="txtStatus" Width="131"/>
+                    <TextBox Name="txtStatus" Width="280"/>
                 </WrapPanel>
                 <WrapPanel Margin="0" HorizontalAlignment="Center" Height="59">
                     <Button Name="btnAdd" Content="Add" FontSize="12" Width="75" Margin="5" Click="btnAdd_Click" />
@@ -68,7 +68,7 @@
                 </WrapPanel>
                 <Label Content="No records found." Name="lblCount" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FFE10000"></Label>
                 <WrapPanel Margin="20" HorizontalAlignment="Center">
-                    <DataGrid AutoGenerateColumns="True" Name="gvData" SelectionMode="Single" FontSize="12" Padding="2" Background="Black" MinWidth="900" />
+                    <DataGrid AutoGenerateColumns="True" Name="gvData" SelectionMode="Single" FontSize="12" Padding="2" Background="Black" MinWidth="900" SelectionChanged="gvData_SelectionChanged"/>
                 </WrapPanel>
             </StackPanel>
         </DockPanel>

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Windows;
@@ -17,6 +19,7 @@ namespace JobHunter
         public ManageJobs()
         {
             InitializeComponent();
+            txtJobID.IsEnabled = false;
             //Connect your access database
             con = new OleDbConnection();
             string db_path = AppDomain.CurrentDomain.BaseDirectory;
@@ -88,8 +91,8 @@ namespace JobHunter
                 }
                 else
                 {
-                    cmd.CommandText = "UPDATE ApplicationHistory SET JobTitle='" + txtJobTitle.Text + "',Company='" + txtCompany.Text + "',Agency='" + chkAgency.IsChecked.Value + "',Agency Name='" + txtAgencyName.Text +
-                        "',Job Url='" + txtJobUrl.Text + "',CV='" + chkCV.IsChecked.Value + "',Cover Letter='" + chkCL.IsChecked.Value + "',Date Applied=" + dateApplied.SelectedDate + ",Received Reply='" + chkReply.IsChecked.Value + ",Status='" + txtStatus.Text + "' where EmpId=" + txtJobID.Text;
+                    cmd.CommandText = "UPDATE ApplicationHistory SET job_title='" + txtJobTitle.Text + "', company='" + txtCompany.Text + "',agency=" + chkAgency.IsChecked.Value + ",agency_name='" + txtAgencyName.Text +
+                        "',job_url='" + txtJobUrl.Text + "',cv_attachment=" + chkCV.IsChecked.Value + ",cover_letter_attachment=" + chkCL.IsChecked.Value + ",Date Applied='" + dateApplied.SelectedDate + "',Received Reply=" + chkReply.IsChecked.Value + ",Status='" + txtStatus.Text + "' WHERE ID=" + txtJobID.Text;
                     cmd.ExecuteNonQuery();
                     BindGrid();
                     MessageBox.Show("Employee Details Updated Succesffully...");
@@ -163,6 +166,35 @@ namespace JobHunter
             {
                 MessageBox.Show("Please Select Any Employee From List...");
             }
+        }
+
+        public IEnumerable<DataGridRow> GetDataGridRows(DataGrid grid)
+        {
+            var itemsSource = grid.ItemsSource as IEnumerable;
+            if (null == itemsSource) yield return null;
+            foreach (var item in itemsSource)
+            {
+                var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+                if (null != row) yield return row;
+            }
+        }
+
+
+        private void gvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var row_list = GetDataGridRows(gvData);
+                foreach (DataGridRow single_row in row_list)
+                {
+                    if (single_row.IsSelected == true)
+                    {
+                        MessageBox.Show("the row no." + single_row.GetIndex().ToString() + " is selected!");
+                    }
+                }
+
+            }
+            catch { }
         }
 
         //Exit
