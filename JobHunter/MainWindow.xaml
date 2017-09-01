@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JobHunter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Main Screen" Height="350" Width="525" FontFamily="Abel">
+    <Window.CommandBindings>
+        <CommandBinding Command="New" CanExecute="CommonCommandBinding_CanExecute" />
+        <CommandBinding Command="Open" CanExecute="CommonCommandBinding_CanExecute" />
+        <CommandBinding Command="Save" CanExecute="CommonCommandBinding_CanExecute" />
+    </Window.CommandBindings>
+
     <Grid>
-        
+        <Label x:Name="label" Content="Jobs applied for:" HorizontalAlignment="Left" Margin="24,16,0,0" VerticalAlignment="Top"/>
+        <DockPanel>
+            <ToolBarTray DockPanel.Dock="Top">
+                <ToolBar Margin="0,0,-17,0">
+                    <Button Command="Cut" ToolTip="Cut selection to Windows Clipboard.">
+                        <Image Source="Images/cut.png" Width="32" Height="32" />
+                    </Button>
+                    <Button Command="Copy" ToolTip="Copy selection to Windows Clipboard.">
+                        <Image Source="Images/copy.png" Width="32" Height="32" />
+                    </Button>
+                    <Button Command="Paste" ToolTip="Paste from Windows Clipboard.">
+                        <Image Source="Images/paste.png" Width="32" Height="32" />
+                    </Button>
+                    <Separator />
+                    <Label Height="32">Font size:</Label>
+                    <ComboBox Margin="1,-4,1,0">
+                        <ComboBoxItem>10</ComboBoxItem>
+                        <ComboBoxItem IsSelected="True">12</ComboBoxItem>
+                        <ComboBoxItem>14</ComboBoxItem>
+                        <ComboBoxItem>16</ComboBoxItem>
+                    </ComboBox>
+                </ToolBar>
+            </ToolBarTray>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>
+
+
     </Grid>
 </Window>
