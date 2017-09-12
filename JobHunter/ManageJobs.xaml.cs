@@ -91,8 +91,20 @@ namespace JobHunter
                 }
                 else
                 {
+                    //if (chkAgency.IsChecked.HasValue && chkAgency.IsChecked.Value)
+                    //{
+                    //    chkAgency.IsChecked = true;
+                    //}
+                    //else
+                    //{
+                    //    chkAgency.IsChecked = false;
+                    //}
                     cmd.CommandText = "UPDATE ApplicationHistory SET job_title='" + txtJobTitle.Text + "', company='" + txtCompany.Text + "',agency=" + chkAgency.IsChecked.Value + ",agency_name='" + txtAgencyName.Text +
-                        "',job_url='" + txtJobUrl.Text + "',cv_attachment=" + chkCV.IsChecked.Value + ",cover_letter_attachment=" + chkCL.IsChecked.Value + ",Date Applied='" + dateApplied.SelectedDate + "',Received Reply=" + chkReply.IsChecked.Value + ",Status='" + txtStatus.Text + "' WHERE ID=" + txtJobID.Text;
+                        "',job_url='" + txtJobUrl.Text + "',cv_attachment=" + chkCV.IsChecked.Value + ",cover_letter_attachment=" + chkCL.IsChecked.Value + ",date_applied='" + dateApplied.SelectedDate + "',reply_received=" + chkReply.IsChecked.Value + ",status='" + txtStatus.Text + "', category='" + txtCategory.Text + "' WHERE ID=" + txtJobID.Text;
+                    //UPDATE ApplicationHistory
+                    //SET job_title = 'asa', company = 'asa', agency = true, agency_name = 'asa', job_url = 'asa', cv_attachment = true, cover_letter_attachment = true,
+                    //                         date_applied = '01/09/2017', reply_received = true, status = 'active', category = 'it'
+                    //WHERE(ID = 4)
                     cmd.ExecuteNonQuery();
                     BindGrid();
                     MessageBox.Show("Employee Details Updated Succesffully...");
@@ -113,12 +125,17 @@ namespace JobHunter
 
         private void ClearAll()
         {
+            txtJobID.Text = "";
             txtJobTitle.Text = "";
-            txtCategory.Text = "";
             txtCompany.Text = "";
+            chkAgency.IsChecked = false;
             txtAgencyName.Text = "";
             txtJobUrl.Text = "";
+            chkCV.IsChecked = false;
+            chkCL.IsChecked = false;
             dateApplied.SelectedDate = null;
+            txtStatus.Text = "";
+            txtCategory.Text = "";
 
             txtStatus.Text = "";
         }
@@ -129,14 +146,46 @@ namespace JobHunter
             if (gvData.SelectedItems.Count > 0)
             {
                 DataRowView row = (DataRowView)gvData.SelectedItems[0];
-                txtJobTitle.Text = row["Job Title"].ToString();
-                chkAgency = row["Agency"] as CheckBox;
-                txtCompany.Text = row["Company"].ToString();
-                txtAgencyName.Text = row["Agency Name"].ToString();
-                txtJobUrl.Text = row["Job Url"].ToString();
-                //dateApplied.SelectedDate = row["Date Applied"];
-                txtStatus.Text = row["Status"].ToString();
-                txtCategory.Text = row["Category"].ToString();
+                txtJobID.Text = row["ID"].ToString();
+                txtJobTitle.Text = row["job_title"].ToString();
+                txtCompany.Text = row["company"].ToString();
+                if (row["agency"].Equals(true))
+                {
+                    chkAgency.IsChecked = true;
+                } else
+                {
+                    chkAgency.IsChecked = false;
+                }
+                txtAgencyName.Text = row["agency_name"].ToString();
+                txtJobUrl.Text = row["job_url"].ToString();
+                if (row["cv_attachment"].Equals(true))
+                {
+                    chkCV.IsChecked = true;
+                }
+                else
+                {
+                    chkCV.IsChecked = false;
+                }
+                if (row["cover_letter_attachment"].Equals(true))
+                {
+                    chkCL.IsChecked = true;
+                }
+                else
+                {
+                    chkCL.IsChecked = false;
+                }
+                DateTime date = Convert.ToDateTime(row["date_applied"].ToString());
+                dateApplied.SelectedDate = date;
+                if (row["reply_received"].Equals(true))
+                {
+                    chkReply.IsChecked = true;
+                }
+                else
+                {
+                    chkReply.IsChecked = false;
+                }
+                txtStatus.Text = row["status"].ToString();
+                txtCategory.Text = row["category"].ToString();
                 btnAdd.Content = "Update";
             }
             else
@@ -156,7 +205,7 @@ namespace JobHunter
                 if (con.State != ConnectionState.Open)
                     con.Open();
                 cmd.Connection = con;
-                cmd.CommandText = "delete from tbEmp where EmpId=" + row["EmpId"].ToString();
+                cmd.CommandText = "delete from ApplicationHistory where ID=" + row["ID"].ToString();
                 cmd.ExecuteNonQuery();
                 BindGrid();
                 MessageBox.Show("Employee Deleted Successfully...");

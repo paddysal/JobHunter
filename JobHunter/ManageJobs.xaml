@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JobHunter"
         mc:Ignorable="d"
-        Title="ManageJobs" Height="551.224" Width="880.185" MinWidth="950">
+        Title="ManageJobs" Height="551.224" Width="880.185" MinWidth="950" SizeToContent="WidthAndHeight">
     <Grid>
         <DockPanel Name="dockMain" VerticalAlignment="top" HorizontalAlignment="Center" LastChildFill="False">
             <StackPanel>
